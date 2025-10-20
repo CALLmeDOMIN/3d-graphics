@@ -1,0 +1,397 @@
+DEF Camera Viewpoint {
+    position 0 40 0
+    orientation 1 0 0 -1.57
+    description "Top View"
+}
+
+DEF Ground Shape {
+    appearance Appearance {
+        material Material {
+            diffuseColor 0.2 0.8 0.2
+        }
+    }
+    geometry Box {
+        size 52.5 0.1 52.5
+    }
+}
+
+PROTO Dor [
+    field SFVec3f translation 0 0 0
+] {
+    Transform {
+        translation IS translation
+        rotation 0 1 0 1.57
+        children [
+            DEF DorTransform Transform {
+                children [
+                    DEF DorSensor TouchSensor { }
+                    Shape {
+                        appearance Appearance {
+                            material Material {
+                                diffuseColor 0.6 0.7 0.8
+                            }
+                        }
+                        geometry Box {
+                            size 7.5 5 0.1
+                        }
+                    }
+                ]
+            }
+            DEF DorTimer TimeSensor {
+                loop FALSE
+                cycleInterval 3
+            }
+            DEF DorInter PositionInterpolator {
+                key [0, 0.25, 0.75, 1]
+                keyValue [0 0 0, 0 5 0, 0 5 0, 0 0 0]
+            }
+            ROUTE DorSensor.touchTime TO DorTimer.set_startTime
+            ROUTE DorTimer.fraction_changed TO DorInter.set_fraction
+            ROUTE DorInter.value_changed TO DorTransform.set_translation
+        ]
+    }
+}
+
+PROTO Message [
+    field SFVec3f translation 0 0 0
+    field SFRotation rotation 0 1 0 0
+] {
+    Transform {
+        translation IS translation
+        rotation IS rotation
+        children [
+            Shape {
+                appearance Appearance {
+                    material Material {
+                        diffuseColor 0.8 0.8 0.8
+                        emissiveColor 0 0 0
+                    }
+                }
+                geometry Text {
+                    string ["WELCOME", "TO THE", "LABIRYNTH"]
+                    fontStyle FontStyle {
+                        size 1
+                        justify ["MIDDLE", "MIDDLE"]
+                    }
+                }
+            }
+        ]
+    }
+}
+
+PROTO Torch [
+    field SFVec3f translation 0 0 0
+] {
+    Transform {
+        translation IS translation
+        children [
+            DEF TorchSensor TouchSensor { }
+            DEF TorchLight PointLight {
+                location 0 5 0
+                color 1 1 0.8
+                intensity 0.8
+                radius 10
+                attenuation 1 0 0
+                on TRUE
+            }
+            DEF TorchShape Shape {
+                appearance Appearance {
+                    material DEF TorchMaterial Material {
+                        emissiveColor 1 1 0.8
+                    }
+                }
+                geometry Sphere {
+                    radius 0.5
+                }
+            }
+            
+            Message {
+                translation 0 2 0
+                rotation 0 -1 0 1.57
+            }
+
+            DEF TorchTime TimeSensor {
+                cycleInterval 1.5
+                loop TRUE
+            }
+
+            DEF TorchInterpolator ColorInterpolator {
+                key [0, 0.5, 1]
+                keyValue [1 1 0.8, 1 0.5 0, 1 1 0.8]
+            }
+
+            DEF TorchToggle BooleanToggle {
+                toggle TRUE
+            }
+
+            ROUTE TorchSensor.isActive TO TorchToggle.set_boolean
+            ROUTE TorchToggle.toggle TO TorchLight.set_on
+            ROUTE TorchTime.fraction_changed TO TorchInterpolator.set_fraction
+            ROUTE TorchInterpolator.value_changed TO TorchLight.set_color
+            ROUTE TorchInterpolator.value_changed TO TorchMaterial.set_emissiveColor
+        ]
+    }
+}
+
+DEF ProximityBox Transform {
+    children [
+        DEF ProximitySensor ProximitySensor {
+            size 100 100 100
+        }
+        Shape {
+            appearance Appearance {
+                material Material {
+                    diffuseColor 1 1 1
+                    transparency 1
+                }
+            }
+            geometry Box {
+                size 100 100 100
+            }
+        }
+    ]
+}
+
+DEF Ghost Transform {
+    translation 0 1.5 0
+    children [
+        Shape {
+            appearance Appearance {
+                material DEF GhostMaterial Material {
+                    diffuseColor 1 1 1
+                    transparency 0.7
+                }
+            }
+            geometry Sphere {
+                radius 1.5
+            }
+        }
+
+        DEF GhostTime TimeSensor {
+            cycleInterval 10
+        }
+
+        DEF GhostTransparencyTime TimeSensor {
+            cycleInterval 5
+        }
+
+        DEF GhostInterpolator PositionInterpolator {
+            key [0, 0.5, 1]
+            keyValue [
+                -15 1.5 24,
+                -15 1.5 -10,
+                -15 1.5 24
+            ]
+        }
+
+        DEF GhostTransparencyInterpolator ScalarInterpolator {
+            key [0, 0.5, 1]
+            keyValue [0, 1, 0]
+        }
+
+        ROUTE GhostTime.fraction_changed TO GhostInterpolator.set_fraction
+        ROUTE GhostInterpolator.value_changed TO Ghost.set_translation
+
+        ROUTE GhostTransparencyTime.fraction_changed TO GhostTransparencyInterpolator.set_fraction
+        ROUTE GhostTransparencyInterpolator.value_changed TO GhostMaterial.set_transparency
+
+        ROUTE ProximitySensor.enterTime TO GhostTime.set_startTime
+        ROUTE ProximitySensor.isActive TO GhostTime.set_loop
+        ROUTE ProximitySensor.enterTime TO GhostTransparencyTime.set_startTime
+        ROUTE ProximitySensor.isActive TO GhostTransparencyTime.set_loop
+    ]
+}
+
+DEF Labirynth Transform {
+    translation 0 2.5 0
+    children [
+        Transform {
+            translation 0 0 -26.25
+            children DEF OuterWall Shape {
+                appearance Appearance {
+                    material Material {
+                        diffuseColor 0.8 0.8 0.8
+                    }
+                }
+                geometry Box {
+                    size 52.5 5 0.1
+                }
+            }
+        }
+        Transform {
+            translation 0 0 26.25
+            children USE OuterWall
+        }
+        Transform {
+            translation -26.25 0 -15
+            rotation 0 1 0 1.57
+            children DEF HalfWall Shape { 
+                appearance Appearance {
+                    material Material {
+                        diffuseColor 0.8 0.8 0.8
+                    }
+                }
+                geometry Box {
+                    size 22.5 5 0.1
+                }
+            }
+        }
+        Transform {
+            translation -26.25 0 15
+            rotation 0 1 0 1.57
+            children USE HalfWall
+        }
+        Transform {
+            translation 26.25 0 -15
+            rotation 0 1 0 1.57
+            children USE HalfWall
+        }
+        Transform {
+            translation 26.25 0 15
+            rotation 0 1 0 1.57
+            children USE HalfWall
+        }
+
+        Dor {
+            translation -26.25 0 0
+        }
+
+        Dor {
+            translation 26.25 0 0
+        }
+
+        Torch {
+            translation -19 -1 0
+        }
+        
+        Transform {
+            translation -22.5 0 3.75
+            children DEF Wall_7_5 Shape {
+                appearance Appearance {
+                    material Material {
+                        diffuseColor 0.8 0.8 0.8
+                    }
+                }
+                geometry Box {
+                    size 7.5 5 0.1
+                }
+            }
+        }
+        Transform {
+            translation -18.75 0 -3.75
+            rotation 0 1 0 1.57
+            children DEF Wall_15 Shape {
+                appearance Appearance {
+                    material Material {
+                        diffuseColor 0.8 0.8 0.8
+                    }
+                }
+                geometry Box {
+                    size 15 5 0.1
+                }
+            }
+        }
+        Transform {
+            translation -11.25 0 -11.25
+            children USE Wall_15
+        }
+        Transform {
+            translation -11.25 0 -3.75
+            rotation 0 1 0 1.57
+            children USE Wall_15
+        }
+        Transform {
+            translation -3.75 0 -3.75
+            rotation 0 1 0 1.57
+            children USE Wall_15
+        }
+        Transform {
+            translation -11.25 0 7.5
+            rotation 0 1 0 1.57
+            children USE Wall_7_5
+        }
+        Transform {
+            translation -3.75 0 11.25
+            children USE Wall_15
+        }
+        Transform {
+            translation 3.75 0 3.75
+            rotation 0 1 0 1.57
+            children USE Wall_15
+        }
+        Transform {
+            translation 7.5 0 -3.75
+            children USE Wall_7_5
+        }
+        Transform {
+            translation 11.25 0 -3.75
+            rotation 0 1 0 1.57
+            children USE Wall_15
+        }
+        Transform {
+            translation -18.75 0 -22.5 
+            rotation 0 1 0 1.57
+            children USE Wall_7_5
+        }
+        Transform {
+            translation -11.25 0 -18.75
+            children USE Wall_15
+        }
+        Transform {
+            translation 0 0 -18.75
+            children USE Wall_7_5
+        }
+        Transform {
+            translation 3.75 0 -15 
+            rotation 0 1 0 1.57
+            children USE Wall_7_5
+        }
+        Transform {
+            translation 18.75 0 -11.25 
+            rotation 0 1 0 1.57
+            children USE Wall_15
+        }
+        Transform {
+            translation 18.75 0 -18.75
+            children USE Wall_15
+        }
+        Transform {
+            translation -18.75 0 22.5 
+            rotation 0 1 0 1.57
+            children USE Wall_7_5
+        }
+        Transform {
+            translation -18.75 0 7.5 
+            rotation 0 1 0 1.57
+            children USE Wall_7_5
+        }
+        Transform {
+            translation 3.75 0 18.75
+            children USE Wall_15
+        }
+        Transform {
+            translation 18.75 0 3.75
+            rotation 0 1 0 1.57
+            children USE Wall_15
+        }
+        Transform {
+            translation 15 0 11.25
+            children USE Wall_7_5
+        }
+        Transform {
+            translation 11.25 0 15
+            rotation 0 1 0 1.57
+            children USE Wall_7_5
+        }
+        Transform {
+            translation -11.25 0 15
+            rotation 0 1 0 1.57
+            children USE Wall_7_5
+        }
+        Transform {
+            translation 18.75 0 22.5
+            rotation 0 1 0 1.57
+            children USE Wall_7_5
+        }
+    ]
+}
