@@ -1,0 +1,15 @@
+#X3D V3.3 utf8
+
+DEF MyCone Shape {
+    geometry Cone {
+        bottomRadius 2.5
+        height 6
+    }
+}
+
+Transform {
+    translation 0 5 0
+    scale 0.5 0.5 0.5
+    rotation 0 0 1 1
+    children USE MyCone
+}

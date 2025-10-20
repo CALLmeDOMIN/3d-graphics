@@ -1,0 +1,46 @@
+#X3D V3.3 utf8
+
+DEF MyCube Shape {
+    appearance Appearance {
+        material Material {
+        }
+    }
+    geometry Box {
+        size 3 1 1
+    }
+}
+
+Transform {
+    translation 0 1 1
+    children [
+        USE MyCube
+    ]
+}
+
+Transform {
+    translation 0 2 2
+    children [
+        USE MyCube
+    ]
+}
+
+Transform {
+    translation 0 3 3
+    children [
+        USE MyCube
+    ]
+}
+
+Transform {
+    translation 0 4 4
+    children [
+        USE MyCube
+    ]
+}
+
+Transform {
+    translation 0 5 5
+    children [
+        USE MyCube
+    ]
+}

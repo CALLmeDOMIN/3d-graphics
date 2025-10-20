@@ -1,0 +1,16 @@
+#X3D V3.3 utf8
+
+Transform {
+    translation 8 13 23
+    children Shape {
+        geometry Sphere {
+            radius 2
+        }
+    }
+}
+
+Shape {
+    geometry Sphere {
+        radius 2
+    }
+}

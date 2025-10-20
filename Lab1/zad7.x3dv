@@ -1,0 +1,15 @@
+#X3D V3.3 utf8
+
+Transform {
+    translation 0 2 0
+    Shape {
+        appearance Appearance {
+            texture ImageTexture {
+                url "imie.png"
+            }
+        }
+        geometry Box {
+            size 4 4 4
+        }
+    }
+}

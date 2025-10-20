@@ -1,0 +1,18 @@
+#X3D V3.3 utf8
+
+Shape {
+    appearance Appearance {
+        material Material {
+        }
+    }
+    geometry Sphere {
+        radius 2.5
+    }
+}
+
+DirectionalLight {
+    color 1 0 0
+    intensity 0.5
+    direction 3 0 0
+    on TRUE
+}
