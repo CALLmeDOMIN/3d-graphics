@@ -1,3 +1,9 @@
+Viewpoint {
+    position 0 40 0
+    orientation 1 0 0 -1.57
+    description "Top View"
+}
+
 DEF Ground Shape {
     appearance Appearance {
         material Material {
@@ -5,7 +11,7 @@ DEF Ground Shape {
         }
     }
     geometry Box {
-        size 50 0.1 50
+        size 52.5 0.1 52.5
     }
 }
 
@@ -13,36 +19,180 @@ Transform {
     translation 0 2.5 0
     children [
         Transform {
-            translation 0 0 -25
-            children DEF Wall Shape {
+            translation 0 0 -26.25
+            children DEF OuterWall Shape {
                 appearance Appearance {
                     material Material {
                         diffuseColor 0.8 0.8 0.8
                     }
                 }
                 geometry Box {
-                    size 50 5 0.1
+                    size 52.5 5 0.1
                 }
             }
         }
         Transform {
-            translation 0 0 25
-            children USE Wall
+            translation 0 0 26.25
+            children USE OuterWall
         }
         Transform {
-            translation -25 0 -25
+            translation -26.25 0 -15
             rotation 0 1 0 1.57
-            children DEF OpenWall Shape { 
+            children DEF HalfWall Shape { 
                 appearance Appearance {
                     material Material {
                         diffuseColor 0.8 0.8 0.8
                     }
                 }
                 geometry Box {
-                    size 25 5 0.1
+                    size 22.5 5 0.1
                 }
             }
         }
-        # USE OpenWall
+        Transform {
+            translation -26.25 0 15
+            rotation 0 1 0 1.57
+            children USE HalfWall
+        }
+        Transform {
+            translation 26.25 0 -15
+            rotation 0 1 0 1.57
+            children USE HalfWall
+        }
+        Transform {
+            translation 26.25 0 15
+            rotation 0 1 0 1.57
+            children USE HalfWall
+        }
+        
+        Transform {
+            translation -22.5 0 3.75
+            children DEF Wall_7_5 Shape {
+                appearance Appearance {
+                    material Material {
+                        diffuseColor 0.8 0.8 0.8
+                    }
+                }
+                geometry Box {
+                    size 7.5 5 0.1
+                }
+            }
+        }
+        Transform {
+            translation -18.75 0 -3.75
+            rotation 0 1 0 1.57
+            children DEF Wall_15 Shape {
+                appearance Appearance {
+                    material Material {
+                        diffuseColor 0.8 0.8 0.8
+                    }
+                }
+                geometry Box {
+                    size 15 5 0.1
+                }
+            }
+        }
+        Transform {
+            translation -11.25 0 -11.25
+            children USE Wall_15
+        }
+        Transform {
+            translation -11.25 0 -3.75
+            rotation 0 1 0 1.57
+            children USE Wall_15
+        }
+        Transform {
+            translation -3.75 0 -3.75
+            rotation 0 1 0 1.57
+            children USE Wall_15
+        }
+        Transform {
+            translation -11.25 0 7.5
+            rotation 0 1 0 1.57
+            children USE Wall_7_5
+        }
+        Transform {
+            translation -3.75 0 11.25
+            children USE Wall_15
+        }
+        Transform {
+            translation 3.75 0 3.75
+            rotation 0 1 0 1.57
+            children USE Wall_15
+        }
+        Transform {
+            translation 7.5 0 -3.75
+            children USE Wall_7_5
+        }
+        Transform {
+            translation 11.25 0 -3.75
+            rotation 0 1 0 1.57
+            children USE Wall_15
+        }
+        Transform {
+            translation -18.75 0 -22.5 
+            rotation 0 1 0 1.57
+            children USE Wall_7_5
+        }
+        Transform {
+            translation -11.25 0 -18.75
+            children USE Wall_15
+        }
+        Transform {
+            translation 0 0 -18.75
+            children USE Wall_7_5
+        }
+        Transform {
+            translation 3.75 0 -15 
+            rotation 0 1 0 1.57
+            children USE Wall_7_5
+        }
+        Transform {
+            translation 18.75 0 -11.25 
+            rotation 0 1 0 1.57
+            children USE Wall_15
+        }
+        Transform {
+            translation 18.75 0 -18.75
+            children USE Wall_15
+        }
+        Transform {
+            translation -18.75 0 22.5 
+            rotation 0 1 0 1.57
+            children USE Wall_7_5
+        }
+        Transform {
+            translation -18.75 0 7.5 
+            rotation 0 1 0 1.57
+            children USE Wall_7_5
+        }
+        Transform {
+            translation 3.75 0 18.75
+            children USE Wall_15
+        }
+        Transform {
+            translation 18.75 0 3.75
+            rotation 0 1 0 1.57
+            children USE Wall_15
+        }
+        Transform {
+            translation 15 0 11.25
+            children USE Wall_7_5
+        }
+        Transform {
+            translation 11.25 0 15
+            rotation 0 1 0 1.57
+            children USE Wall_7_5
+        }
+        Transform {
+            translation -11.25 0 15
+            rotation 0 1 0 1.57
+            children USE Wall_7_5
+        }
+        Transform {
+            translation 18.75 0 22.5
+            rotation 0 1 0 1.57
+            children USE Wall_7_5
+        }
     ]
 }
