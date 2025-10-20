@@ -1,0 +1,53 @@
+#X3D V3.3 utf8
+
+DEF _Box Transform {
+    children [
+        Shape {
+            appearance Appearance {
+                material Material {
+                    diffuseColor 0 0 1
+                }
+            }
+            geometry Box {}
+        }
+    ]
+}
+
+DEF _Sphere Transform {
+    children [
+        Shape {
+            appearance Appearance {
+                material Material {
+                    diffuseColor 0 1 0
+                }
+            }
+            geometry Sphere {}
+        }
+    ]
+}
+
+DEF _PTime TimeSensor {
+    loop TRUE
+    cycleInterval 10
+}
+
+DEF _PInterpolator PositionInterpolator {
+    key [0, 0.25, 0.5, 0.75, 1]
+    keyValue [5 0 0, 0 0 5, -5 0 0, 0 0 -5, 5 0 0]
+}
+
+DEF _OTime TimeSensor {
+    loop TRUE
+    cycleInterval 1
+}
+
+DEF _OInterpolator OrientationInterpolator {
+    key [0, 0.25, 0.5, 0.75, 1]
+    keyValue [0 1 0 0, 0 1 1.57 1.57, 0 1 3.14 3.14, 0 1 4.71 4.71, 0 1 6.28 6.28]
+}
+
+ROUTE _PTime.fraction_changed TO _PInterpolator.set_fraction
+ROUTE _PInterpolator.value_changed TO _Sphere.set_translation
+
+ROUTE _OTime.fraction_changed TO _OInterpolator.set_fraction
+ROUTE _OInterpolator.value_changed TO _Box.set_rotation

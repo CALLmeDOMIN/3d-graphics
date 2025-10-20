@@ -1,0 +1,48 @@
+DEF Ground Shape {
+    appearance Appearance {
+        material Material {
+            diffuseColor 0.2 0.8 0.2
+        }
+    }
+    geometry Box {
+        size 50 0.1 50
+    }
+}
+
+Transform {
+    translation 0 2.5 0
+    children [
+        Transform {
+            translation 0 0 -25
+            children DEF Wall Shape {
+                appearance Appearance {
+                    material Material {
+                        diffuseColor 0.8 0.8 0.8
+                    }
+                }
+                geometry Box {
+                    size 50 5 0.1
+                }
+            }
+        }
+        Transform {
+            translation 0 0 25
+            children USE Wall
+        }
+        Transform {
+            translation -25 0 -25
+            rotation 0 1 0 1.57
+            children DEF OpenWall Shape { 
+                appearance Appearance {
+                    material Material {
+                        diffuseColor 0.8 0.8 0.8
+                    }
+                }
+                geometry Box {
+                    size 25 5 0.1
+                }
+            }
+        }
+        # USE OpenWall
+    ]
+}

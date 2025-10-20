@@ -1,0 +1,374 @@
+DEF Sun Transform {
+    children Shape {
+        appearance Appearance {
+            texture ImageTexture {
+                url "./textures/sun.jpg"
+            }
+        }
+        geometry Sphere {
+            radius 2
+        }
+    }
+}
+
+DEF Mercury Transform {
+    center -5 0 0
+    translation 5 0 0
+    children DEF MercuryShape Transform { 
+        children Shape {
+            appearance Appearance {
+                texture ImageTexture {
+                    url "./textures/2k_mercury.jpg"
+                }
+            }
+            geometry Sphere {
+                radius 0.3
+            }
+        }
+    }
+}
+
+DEF Venus Transform {
+    center -10 0 0
+    translation 10 0 0
+    children DEF VenusShape Transform {
+        children Shape {
+            appearance Appearance {
+                texture ImageTexture {
+                    url "./textures/2k_venus_atmosphere.jpg"
+                }
+            }
+            geometry Sphere {
+                radius 0.5
+            }
+        }
+    }
+}
+
+DEF Earth Transform {
+    center -15 0 0
+    translation 15 0 0
+    children DEF EarthShape Transform {
+        children Shape {
+            appearance Appearance {
+                texture ImageTexture {
+                    url "./textures/2k_earth_daymap.jpg"
+                }
+            }
+            geometry Sphere {
+                radius 0.7
+            }
+        }
+    }
+}
+
+DEF Mars Transform {
+    center -20 0 0
+    translation 20 0 0
+    children DEF MarsShape Transform {
+        children Shape {
+            appearance Appearance {
+                texture ImageTexture {
+                    url "./textures/2k_mars.jpg"
+                }
+            }
+            geometry Sphere {
+                radius 0.5
+            }
+        }
+    }
+}
+
+DEF Jupiter Transform {
+    center -25 0 0
+    translation 25 0 0
+    children DEF JupiterShape Transform {
+        children Shape {
+            appearance Appearance {
+                texture ImageTexture {
+                    url "./textures/2k_jupiter.jpg"
+                }
+            }
+            geometry Sphere {
+                radius 2
+            }
+        }
+    }
+}
+
+DEF Saturn Transform {
+    center -30 0 0
+    translation 30 0 0
+    children DEF SaturnShape Transform {
+        children [
+            Shape {
+                appearance Appearance {
+                    texture ImageTexture {
+                        url "./textures/2k_saturn.jpg"
+                    }
+                }
+                geometry Sphere {
+                    radius 1.7
+                }
+            }
+            Shape {
+                appearance Appearance {
+                    texture ImageTexture {
+                        url "./textures/2k_saturn_ring_alpha.png"
+                    }
+                }
+                geometry Cylinder {
+                    radius 2.5
+                    height 0
+                }
+            }
+        ]
+    }
+}
+
+DEF Uranus Transform {
+    center -35 0 0
+    translation 35 0 0
+    children DEF UranusShape Transform {
+        children Shape {
+            appearance Appearance {
+                texture ImageTexture {
+                    url "./textures/2k_uranus.jpg"
+                }
+            }
+            geometry Sphere {
+                radius 1.5
+            }
+        }
+    }
+}
+
+DEF Neptune Transform {
+    center -40 0 0
+    translation 40 0 0
+    children DEF NeptuneShape Transform {
+        children Shape {
+            appearance Appearance {
+                texture ImageTexture {
+                    url "./textures/2k_neptune.jpg"
+                }
+            }
+            geometry Sphere {
+                radius 1.2
+            }
+        }
+    }
+}
+
+DEF SRotationTime TimeSensor {
+    loop TRUE
+    cycleInterval 20
+}
+
+DEF SRotationInterpolator OrientationInterpolator {
+    key [0, 0.5, 1]
+    keyValue [0 1 0 0, 0 1 0 3.14, 0 1 0 6.28]
+}
+
+DEF MPositionTime TimeSensor {
+    loop TRUE
+    cycleInterval 5
+}
+
+DEF MPositionInterpolator OrientationInterpolator {
+    key [0, 0.25, 0.5, 0.75, 1]
+    keyValue [0 1 0 0, 0 1 0 1.57, 0 1 0 3.14, 0 1 0 4.71, 0 1 0 6.28]
+}
+
+DEF MRotationTime TimeSensor {
+    loop TRUE
+    cycleInterval 2
+}
+
+DEF MRotationInterpolator OrientationInterpolator {
+    key [0, 0.5, 1]
+    keyValue [0 1 0 0, 0 1 0 3.14, 0 1 0 6.28]
+}
+
+DEF VPositionTime TimeSensor {
+    loop TRUE
+    cycleInterval 8
+}
+
+DEF VPositionInterpolator OrientationInterpolator {
+    key [0, 0.25, 0.5, 0.75, 1]
+    keyValue [0 1 0 0, 0 1 0 1.57, 0 1 0 3.14, 0 1 0 4.71, 0 1 0 6.28]
+}
+
+DEF VRotationTime TimeSensor {
+    loop TRUE
+    cycleInterval 4
+}
+
+DEF VRotationInterpolator OrientationInterpolator {
+    key [0, 0.5, 1]
+    keyValue [0 1 0 0, 0 1 0 3.14, 0 1 0 6.28]
+}
+
+DEF EPositionTime TimeSensor {
+    loop TRUE
+    cycleInterval 10
+}
+
+DEF EPositionInterpolator OrientationInterpolator {
+    key [0, 0.25, 0.5, 0.75, 1]
+    keyValue [0 1 0 0, 0 1 0 1.57, 0 1 0 3.14, 0 1 0 4.71, 0 1 0 6.28]
+}
+
+DEF ERotationTime TimeSensor {
+    loop TRUE
+    cycleInterval 5
+}
+
+DEF ERotationInterpolator OrientationInterpolator {
+    key [0, 0.5, 1]
+    keyValue [0 1 0 0, 0 1 0 3.14, 0 1 0 6.28]
+}
+
+DEF MaPositionTime TimeSensor {
+    loop TRUE
+    cycleInterval 12
+}
+
+DEF MaPositionInterpolator OrientationInterpolator {
+    key [0, 0.25, 0.5, 0.75, 1]
+    keyValue [0 1 0 0, 0 1 0 1.57, 0 1 0 3.14, 0 1 0 4.71, 0 1 0 6.28]
+}
+
+DEF MaRotationTime TimeSensor {
+    loop TRUE
+    cycleInterval 6
+}
+
+DEF MaRotationInterpolator OrientationInterpolator {
+    key [0, 0.5, 1]
+    keyValue [0 1 0 0, 0 1 0 3.14, 0 1 0 6.28]
+}
+
+DEF JPositionTime TimeSensor {
+    loop TRUE
+    cycleInterval 15
+}
+
+DEF JPositionInterpolator OrientationInterpolator {
+    key [0, 0.25, 0.5, 0.75, 1]
+    keyValue [0 1 0 0, 0 1 0 1.57, 0 1 0 3.14, 0 1 0 4.71, 0 1 0 6.28]
+}
+
+DEF JRotationTime TimeSensor {
+    loop TRUE
+    cycleInterval 15
+}
+
+DEF JRotationInterpolator OrientationInterpolator {
+    key [0, 0.5, 1]
+    keyValue [0 1 0 0, 0 1 0 3.14, 0 1 0 6.28]
+}
+
+DEF StPositionTime TimeSensor {
+    loop TRUE
+    cycleInterval 20
+}
+
+DEF StPositionInterpolator OrientationInterpolator {
+    key [0, 0.25, 0.5, 0.75, 1]
+    keyValue [0 1 0 0, 0 1 0 1.57, 0 1 0 3.14, 0 1 0 4.71, 0 1 0 6.28]
+}
+
+DEF StRotationTime TimeSensor {
+    loop TRUE
+    cycleInterval 10
+}
+
+DEF StRotationInterpolator OrientationInterpolator {
+    key [0, 0.5, 1]
+    keyValue [0 1 0 0, 0 1 0 3.14, 0 1 0 6.28]
+}
+
+DEF UrPositionTime TimeSensor {
+    loop TRUE
+    cycleInterval 25
+}
+
+DEF UrPositionInterpolator OrientationInterpolator {
+    key [0, 0.25, 0.5, 0.75, 1]
+    keyValue [0 1 0 0, 0 1 0 1.57, 0 1 0 3.14, 0 1 0 4.71, 0 1 0 6.28]
+}
+
+DEF UrRotationTime TimeSensor {
+    loop TRUE
+    cycleInterval 12
+}
+
+DEF UrRotationInterpolator OrientationInterpolator {
+    key [0, 0.5, 1]
+    keyValue [0 1 0 0, 0 1 0 3.14, 0 1 0 6.28]
+}
+
+DEF NPositionTime TimeSensor {
+    loop TRUE
+    cycleInterval 30
+}
+
+DEF NPositionInterpolator OrientationInterpolator {
+    key [0, 0.25, 0.5, 0.75, 1]
+    keyValue [0 1 0 0, 0 1 0 1.57, 0 1 0 3.14, 0 1 0 4.71, 0 1 0 6.28]
+}
+
+DEF NRotationTime TimeSensor {
+    loop TRUE
+    cycleInterval 15
+}
+
+DEF NRotationInterpolator OrientationInterpolator {
+    key [0, 0.5, 1]
+    keyValue [0 1 0 0, 0 1 0 3.14, 0 1 0 6.28]
+}
+
+ROUTE SRotationTime.fraction_changed TO SRotationInterpolator.set_fraction
+ROUTE SRotationInterpolator.value_changed TO Sun.set_rotation
+
+ROUTE MPositionTime.fraction_changed TO MPositionInterpolator.set_fraction
+ROUTE MPositionInterpolator.value_changed TO Mercury.set_rotation
+ROUTE MRotationTime.fraction_changed TO MRotationInterpolator.set_fraction
+ROUTE MRotationInterpolator.value_changed TO MercuryShape.set_rotation
+
+ROUTE VPositionTime.fraction_changed TO VPositionInterpolator.set_fraction
+ROUTE VPositionInterpolator.value_changed TO Venus.set_rotation
+ROUTE VRotationTime.fraction_changed TO VRotationInterpolator.set_fraction
+ROUTE VRotationInterpolator.value_changed TO VenusShape.set_rotation
+
+ROUTE EPositionTime.fraction_changed TO EPositionInterpolator.set_fraction
+ROUTE EPositionInterpolator.value_changed TO Earth.set_rotation
+ROUTE ERotationTime.fraction_changed TO ERotationInterpolator.set_fraction
+ROUTE ERotationInterpolator.value_changed TO EarthShape.set_rotation
+
+ROUTE MaPositionTime.fraction_changed TO MaPositionInterpolator.set_fraction
+ROUTE MaPositionInterpolator.value_changed TO Mars.set_rotation
+ROUTE MaRotationTime.fraction_changed TO MaRotationInterpolator.set_fraction
+ROUTE MaRotationInterpolator.value_changed TO MarsShape.set_rotation
+
+ROUTE JPositionTime.fraction_changed TO JPositionInterpolator.set_fraction
+ROUTE JPositionInterpolator.value_changed TO Jupiter.set_rotation
+ROUTE JRotationTime.fraction_changed TO JRotationInterpolator.set_fraction
+ROUTE JRotationInterpolator.value_changed TO JupiterShape.set_rotation
+
+ROUTE StPositionTime.fraction_changed TO StPositionInterpolator.set_fraction
+ROUTE StPositionInterpolator.value_changed TO Saturn.set_rotation
+ROUTE StRotationTime.fraction_changed TO StRotationInterpolator.set_fraction
+ROUTE StRotationInterpolator.value_changed TO SaturnShape.set_rotation
+
+ROUTE UrPositionTime.fraction_changed TO UrPositionInterpolator.set_fraction
+ROUTE UrPositionInterpolator.value_changed TO Uranus.set_rotation
+ROUTE UrRotationTime.fraction_changed TO UrRotationInterpolator.set_fraction
+ROUTE UrRotationInterpolator.value_changed TO UranusShape.set_rotation
+
+ROUTE NPositionTime.fraction_changed TO NPositionInterpolator.set_fraction
+ROUTE NPositionInterpolator.value_changed TO Neptune.set_rotation
+ROUTE NRotationTime.fraction_changed TO NRotationInterpolator.set_fraction
+ROUTE NRotationInterpolator.value_changed TO NeptuneShape.set_rotation
