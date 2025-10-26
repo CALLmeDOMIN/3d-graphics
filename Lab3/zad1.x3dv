@@ -1,18 +1,123 @@
-DEF Camera Viewpoint {
-    position 0 40 0
-    orientation 1 0 0 -1.57
-    description "Top View"
+#X3D V3.3 utf8
+
+Viewpoint {
+    position -80 40 -80
+    orientation 0 1 0 3.927
+}
+
+Background {
+    skyColor [
+        0.0 0.2 0.7,
+        0.0 0.5 1.0,
+        1.0 1.0 1.0
+    ]
+    skyAngle [1.309, 1.571]
+    groundColor [
+        0.2 0.3 0.2,
+        0.2 0.4 0.2,
+        0.2 0.5 0.2
+    ]
+    groundAngle [1.309, 1.571]
+}
+
+Fog {
+    color 0.7 0.7 0.8
+    fogType "LINEAR"
+    visibilityRange 300
 }
 
 DEF Ground Shape {
     appearance Appearance {
         material Material {
-            diffuseColor 0.2 0.8 0.2
+            diffuseColor 0.2 0.5 0.2
         }
     }
     geometry Box {
         size 52.5 0.1 52.5
     }
+}
+
+DEF Mountains Transform {
+    translation -50 -5 26.5
+    children [
+        Shape {
+            appearance Appearance {
+                material Material {
+                    diffuseColor 0.4 0.35 0.3
+                }
+            }
+            geometry ElevationGrid {
+                xDimension 30
+                zDimension 20
+                xSpacing 8
+                zSpacing 5
+                height [
+                    0 0 1 2 3 4 5 6 7 8 9 10 11 10 9 8 7 6 5 4 3 2 1 0 0 1 2 1 0 0
+                    0 1 2 3 4 5 6 7 8 9 11 12 13 12 11 9 8 7 6 5 4 3 2 1 1 2 3 2 1 0
+                    0 1 2 4 5 6 8 9 10 12 13 15 16 15 13 12 10 9 8 6 5 4 3 2 2 3 4 3 2 0
+                    1 2 3 5 7 8 10 12 13 15 16 18 20 18 16 15 13 12 10 8 7 5 4 3 3 4 5 4 3 1
+                    1 2 4 6 8 10 12 14 16 18 20 22 24 22 20 18 16 14 12 10 8 6 5 4 4 5 6 5 4 2
+                    2 3 5 7 10 12 15 17 20 22 25 27 30 27 25 22 20 17 15 12 10 7 6 5 5 6 7 6 5 3
+                    2 4 6 9 12 15 18 21 24 27 30 33 36 33 30 27 24 21 18 15 12 9 7 6 6 7 8 7 6 4
+                    3 5 8 11 15 18 22 26 30 34 38 42 45 42 38 34 30 26 22 18 15 11 9 7 7 8 9 8 7 5
+                    3 6 9 13 17 22 27 32 37 42 47 52 56 52 47 42 37 32 27 22 17 13 10 8 8 9 10 9 8 6
+                    4 7 11 15 20 25 31 37 43 49 55 61 65 61 55 49 43 37 31 25 20 15 12 9 9 10 11 10 9 7
+                    4 8 12 17 22 28 35 42 49 56 63 70 75 70 63 56 49 42 35 28 22 17 13 10 10 11 12 11 10 8
+                    5 9 14 19 25 31 38 46 54 62 70 78 84 78 70 62 54 46 38 31 25 19 15 11 11 12 13 12 11 9
+                    5 10 15 21 27 34 42 50 59 68 77 86 92 86 77 68 59 50 42 34 27 21 16 12 12 13 14 13 12 10
+                    4 9 14 20 26 33 41 49 58 67 76 85 91 85 76 67 58 49 41 33 26 20 15 11 11 12 13 12 11 9
+                    4 8 13 18 24 31 38 46 54 63 72 81 87 81 72 63 54 46 38 31 24 18 14 10 10 11 12 11 10 8
+                    3 7 11 16 21 27 34 41 49 57 65 73 79 73 65 57 49 41 34 27 21 16 12 9 9 10 11 10 9 7
+                    3 6 9 13 18 23 29 35 42 49 56 63 68 63 56 49 42 35 29 23 18 13 10 7 7 8 9 8 7 5
+                    2 5 7 10 14 18 23 28 34 40 46 52 56 52 46 40 34 28 23 18 14 10 8 6 6 7 8 7 6 4
+                    1 3 5 7 10 13 17 21 25 30 35 40 43 40 35 30 25 21 17 13 10 7 6 4 4 5 6 5 4 2
+                    0 1 2 3 5 7 9 12 15 18 21 24 26 24 21 18 15 12 9 7 5 3 2 1 1 2 3 2 1 0
+                ]
+            }
+        }
+    ]
+}
+
+DEF Mountains2 Transform {
+    translation 27 -10 80
+    rotation 0 1 0 1.57
+    children [
+        Shape {
+            appearance Appearance {
+                material Material {
+                    diffuseColor 0.35 0.3 0.25
+                }
+            }
+            geometry ElevationGrid {
+                xDimension 30
+                zDimension 20
+                xSpacing 8
+                zSpacing 5
+                height [
+                    0 0 1 2 3 4 5 6 7 8 9 10 11 10 9 8 7 6 5 4 3 2 1 0 0 1 2 1 0 0
+                    0 1 2 3 4 5 6 7 8 9 11 12 13 12 11 9 8 7 6 5 4 3 2 1 1 2 3 2 1 0
+                    0 1 2 4 5 6 8 9 10 12 13 15 16 15 13 12 10 9 8 6 5 4 3 2 2 3 4 3 2 0
+                    1 2 3 5 7 8 10 12 13 15 16 18 20 18 16 15 13 12 10 8 7 5 4 3 3 4 5 4 3 1
+                    1 2 4 6 8 10 12 14 16 18 20 22 24 22 20 18 16 14 12 10 8 6 5 4 4 5 6 5 4 2
+                    2 3 5 7 10 12 15 17 20 22 25 27 30 27 25 22 20 17 15 12 10 7 6 5 5 6 7 6 5 3
+                    2 4 6 9 12 15 18 21 24 27 30 33 36 33 30 27 24 21 18 15 12 9 7 6 6 7 8 7 6 4
+                    3 5 8 11 15 18 22 26 30 34 38 42 45 42 38 34 30 26 22 18 15 11 9 7 7 8 9 8 7 5
+                    3 6 9 13 17 22 27 32 37 42 47 52 56 52 47 42 37 32 27 22 17 13 10 8 8 9 10 9 8 6
+                    4 7 11 15 20 25 31 37 43 49 55 61 65 61 55 49 43 37 31 25 20 15 12 9 9 10 11 10 9 7
+                    3 6 9 13 17 22 27 32 37 42 47 52 56 52 47 42 37 32 27 22 17 13 10 8 8 9 10 9 8 6
+                    3 5 8 11 15 18 22 26 30 34 38 42 45 42 38 34 30 26 22 18 15 11 9 7 7 8 9 8 7 5
+                    2 4 6 9 12 15 18 21 24 27 30 33 36 33 30 27 24 21 18 15 12 9 7 6 6 7 8 7 6 4
+                    2 3 5 7 10 12 15 17 20 22 25 27 30 27 25 22 20 17 15 12 10 7 6 5 5 6 7 6 5 3
+                    1 2 4 6 8 10 12 14 16 18 20 22 24 22 20 18 16 14 12 10 8 6 5 4 4 5 6 5 4 2
+                    1 2 3 5 7 8 10 12 13 15 16 18 20 18 16 15 13 12 10 8 7 5 4 3 3 4 5 4 3 1
+                    0 1 2 4 5 6 8 9 10 12 13 15 16 15 13 12 10 9 8 6 5 4 3 2 2 3 4 3 2 0
+                    0 1 2 3 4 5 6 7 8 9 11 12 13 12 11 9 8 7 6 5 4 3 2 1 1 2 3 2 1 0
+                    0 0 1 2 3 4 5 6 7 8 9 10 11 10 9 8 7 6 5 4 3 2 1 0 0 1 2 1 0 0
+                    0 0 0 1 1 2 3 4 5 6 7 8 9 8 7 6 5 4 3 2 1 1 0 0 0 0 1 0 0 0
+                ]
+            }
+        }
+    ]
 }
 
 PROTO Dor [
@@ -104,11 +209,6 @@ PROTO Torch [
                     radius 0.5
                 }
             }
-            
-            Message {
-                translation 0 2 0
-                rotation 0 -1 0 1.57
-            }
 
             DEF TorchTime TimeSensor {
                 cycleInterval 1.5
@@ -138,17 +238,6 @@ DEF ProximityBox Transform {
         DEF ProximitySensor ProximitySensor {
             size 100 100 100
         }
-        Shape {
-            appearance Appearance {
-                material Material {
-                    diffuseColor 1 1 1
-                    transparency 1
-                }
-            }
-            geometry Box {
-                size 100 100 100
-            }
-        }
     ]
 }
 
@@ -159,7 +248,7 @@ DEF Ghost Transform {
             appearance Appearance {
                 material DEF GhostMaterial Material {
                     diffuseColor 1 1 1
-                    transparency 0.7
+                    transparency 1
                 }
             }
             geometry Sphere {
@@ -171,8 +260,14 @@ DEF Ghost Transform {
             cycleInterval 10
         }
 
-        DEF GhostTransparencyTime TimeSensor {
-            cycleInterval 5
+        DEF GhostFadeInTime TimeSensor {
+            cycleInterval 2
+            loop FALSE
+        }
+
+        DEF GhostFadeOutTime TimeSensor {
+            cycleInterval 2
+            loop FALSE
         }
 
         DEF GhostInterpolator PositionInterpolator {
@@ -184,21 +279,29 @@ DEF Ghost Transform {
             ]
         }
 
-        DEF GhostTransparencyInterpolator ScalarInterpolator {
-            key [0, 0.5, 1]
-            keyValue [0, 1, 0]
+        DEF GhostFadeInInterpolator ScalarInterpolator {
+            key [0, 1]
+            keyValue [1, 0.3]
+        }
+
+        DEF GhostFadeOutInterpolator ScalarInterpolator {
+            key [0, 1]
+            keyValue [0.3, 1]
         }
 
         ROUTE GhostTime.fraction_changed TO GhostInterpolator.set_fraction
         ROUTE GhostInterpolator.value_changed TO Ghost.set_translation
 
-        ROUTE GhostTransparencyTime.fraction_changed TO GhostTransparencyInterpolator.set_fraction
-        ROUTE GhostTransparencyInterpolator.value_changed TO GhostMaterial.set_transparency
+        ROUTE GhostFadeInTime.fraction_changed TO GhostFadeInInterpolator.set_fraction
+        ROUTE GhostFadeInInterpolator.value_changed TO GhostMaterial.set_transparency
+
+        ROUTE GhostFadeOutTime.fraction_changed TO GhostFadeOutInterpolator.set_fraction
+        ROUTE GhostFadeOutInterpolator.value_changed TO GhostMaterial.set_transparency
 
         ROUTE ProximitySensor.enterTime TO GhostTime.set_startTime
+        ROUTE ProximitySensor.enterTime TO GhostFadeInTime.set_startTime
+        ROUTE ProximitySensor.exitTime TO GhostFadeOutTime.set_startTime
         ROUTE ProximitySensor.isActive TO GhostTime.set_loop
-        ROUTE ProximitySensor.enterTime TO GhostTransparencyTime.set_startTime
-        ROUTE ProximitySensor.isActive TO GhostTransparencyTime.set_loop
     ]
 }
 
@@ -263,6 +366,27 @@ DEF Labirynth Transform {
         Torch {
             translation -19 -1 0
         }
+
+        Torch {
+            translation 19 -1 0
+        }
+
+        Torch {
+            translation 0 -1 -19
+        }
+
+        Torch {
+            translation 0 -1 19
+        }
+
+        Torch {
+            translation -3.5 -1 1
+        }
+
+        Message {
+            translation -19 1 0
+            rotation 0 -1 0 1.57
+        }
         
         Transform {
             translation -22.5 0 3.75
@@ -291,10 +415,37 @@ DEF Labirynth Transform {
                 }
             }
         }
+        
         Transform {
-            translation -11.25 0 -11.25
-            children USE Wall_15
+            translation -7.5 0 -11.25
+            children [
+                DEF SecretDoor Transform {
+                    children [
+                        DEF SlidingWallSensor PlaneSensor {
+                            minPosition 0 0
+                            maxPosition 7.5 0
+                            autoOffset TRUE
+                        }
+                        Shape {
+                            appearance Appearance {
+                                material Material {
+                                    diffuseColor 0.8 0.8 0.8
+                                }
+                            }
+                            geometry Box {
+                                size 7.5 5 0.1
+                            }
+                        }
+                    ]
+                }
+            ]
         }
+        
+        Transform {
+            translation -15 0 -11.25
+            children USE Wall_7_5
+        }
+        
         Transform {
             translation -11.25 0 -3.75
             rotation 0 1 0 1.57
@@ -395,3 +546,47 @@ DEF Labirynth Transform {
         }
     ]
 }
+DEF PortalDestinationView Viewpoint {
+    position 0 50 0
+    orientation 1 0 0 -1.5708
+}
+
+NavigationInfo {
+    type "FLY"
+    speed 10.0
+    headlight TRUE
+}
+
+DEF Portal Transform {
+    translation -80 2.5 -80
+    children [
+        DEF PortalTrigger ProximitySensor {
+            size 12 5 12
+        }
+        DEF PortalTimer TimeSensor {
+            cycleInterval 0.1
+            loop FALSE
+        }
+        DEF PortalEventFilter BooleanFilter {}
+        Shape {
+            appearance Appearance {
+                material Material {
+                    emissiveColor 0.2 0.1 0.8
+                    diffuseColor 0 0 0
+                    transparency 0.4
+                }
+            }
+            geometry Cylinder {
+                radius 6
+                height 0.4
+                side FALSE
+            }
+        }
+    ]
+}
+
+ROUTE PortalTrigger.enterTime TO PortalTimer.set_startTime
+ROUTE PortalTimer.isActive TO PortalEventFilter.set_boolean
+ROUTE PortalEventFilter.inputTrue TO PortalDestinationView.set_bind
+
+ROUTE SlidingWallSensor.translation_changed TO SecretDoor.set_translation
