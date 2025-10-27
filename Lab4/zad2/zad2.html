@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <script
+            type="text/javascript"
+            src="https://www.x3dom.org/download/1.8.3/x3dom.js"
+        ></script>
+        <script src="./zad2.js"></script>
+    </head>
+    <body>
+        <x3d width="1000px" height="900px">
+            <scene>
+                <shape>
+                    <appearance>
+                        <material emissiveColor="1 0 0"></material>
+                    </appearance>
+                    <pointset>
+                        <coordinate id="points" point="0 0 0"></coordinate>
+                    </pointset>
+                </shape>
+            </scene>
+        </x3d>
+        <button onclick="addPoints()">Draw</button>
+    </body>
+</html>

@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <script
+            type="text/javascript"
+            src="https://www.x3dom.org/download/1.8.3/x3dom.js"
+        ></script>
+    </head>
+    <body>
+        <x3d width="1000px" height="900px">
+            <scene>
+                <shape>
+                    <appearance>
+                        <material
+                            id="bootsMat"
+                            diffuseColor="0.35 0.39 0.4375"
+                        ></material>
+                    </appearance>
+                    <box size="0.5 0.2 0.3"></box>
+                </shape>
+                <transform translation="0 0.4 0">
+                    <shape>
+                        <appearance>
+                            <material
+                                id="pantsMat"
+                                diffuseColor="0.24609375 0.19921875 0.69140625"
+                            ></material>
+                        </appearance>
+                        <box size="0.5 0.6 0.3"></box>
+                    </shape>
+                </transform>
+                <transform translation="0 1.05 0">
+                    <shape>
+                        <appearance>
+                            <material
+                                id="shirtMat"
+                                diffuseColor="0 0.6171875 0.70703125"
+                            ></material>
+                        </appearance>
+                        <box size="0.5 0.7 0.3"></box>
+                    </shape>
+                </transform>
+                <transform translation="0 1.3 0">
+                    <shape>
+                        <appearance>
+                            <material
+                                id="shirtMat2"
+                                diffuseColor="0 0.6171875 0.70703125"
+                            ></material>
+                        </appearance>
+                        <box size="0.9 0.2 0.3"></box>
+                    </shape>
+                </transform>
+                <transform id="arm1Trans" translation="-0.35 1.0 0">
+                    <shape>
+                        <appearance>
+                            <material
+                                diffuseColor="0.62890625 0.45703125 0.421875"
+                            ></material>
+                        </appearance>
+                        <box id="arm1" size="0.2 0.6 0.3"></box>
+                    </shape>
+                </transform>
+                <transform id="arm2Trans" translation="0.35 1.0 0">
+                    <shape>
+                        <appearance>
+                            <material
+                                diffuseColor="0.62890625 0.45703125 0.421875"
+                            ></material>
+                        </appearance>
+                        <box id="arm2" size="0.2 0.6 0.3"></box>
+                    </shape>
+                </transform>
+                <transform translation="0 1.6 0">
+                    <shape>
+                        <appearance>
+                            <material
+                                diffuseColor="0.62890625 0.45703125 0.421875"
+                            ></material>
+                        </appearance>
+                        <box size="0.4 0.4 0.4"></box>
+                    </shape>
+                </transform>
+                <transform translation="0.1 1.6 0.151">
+                    <shape>
+                        <appearance>
+                            <material id="eye1" diffuseColor="1 0 0"></material>
+                        </appearance>
+                        <box size="0.1 0.1 0.1"></box>
+                    </shape>
+                </transform>
+                <transform translation="-0.1 1.6 0.151">
+                    <shape>
+                        <appearance>
+                            <material id="eye2" diffuseColor="1 0 0"></material>
+                        </appearance>
+                        <box size="0.1 0.1 0.1"></box>
+                    </shape>
+                </transform>
+                <transform translation="0 1.75 0.01">
+                    <shape>
+                        <appearance>
+                            <material
+                                diffuseColor="0.15625 0.08203125 0.02734375"
+                            ></material>
+                        </appearance>
+                        <box size="0.43 0.13 0.43"></box>
+                    </shape>
+                </transform>
+            </scene>
+        </x3d>
+        <form action="">
+            <label for="shirt">Shirt color:</label>
+            <input type="color" name="shirt" id="shirt" value="#01CDDA" />
+            <label for="pants">Pants color:</label>
+            <input id="pants" type="color" name="pants" value="#877AD8" />
+            <label for="boots">Boots color:</label>
+            <input id="boots" type="color" name="boots" value="#9EA6AF" />
+            <label for="arm">Arm size:</label>
+            <input
+                type="range"
+                name="arm"
+                id="arm"
+                min="0"
+                max="100"
+                value="0"
+            />
+            <button>save</button>
+        </form>
+        <script src="./zad3.js"></script>
+    </body>
+</html>
